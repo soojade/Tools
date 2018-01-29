@@ -1,0 +1,16 @@
+{
+    "name": "下载文件大小",
+    "description": "下载前显示文件大小",
+    "version": "0.1",
+    "minimum_chrome_version": "31",
+    "background": {
+        "scripts": [
+            "bg.js"
+        ],
+        "persistent": false
+    },
+    "permissions": [
+        "downloads"
+    ],
+    "manifest_version": 2
+}
