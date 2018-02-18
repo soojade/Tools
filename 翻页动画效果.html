@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>翻页动画效果</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .book {
+            width: 300px;
+            margin: 100px auto;
+            position: relative;
+            perspective: 1500px;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+        }
+
+        .book:hover .cover {
+            transform: rotateY(-180deg);
+        }
+
+        .book:hover .page1 {
+            transform: rotateY(0deg);
+        }
+
+        li {
+            position: absolute;
+            font-size: 0;
+            width: 300px;
+            height: 400px;
+            box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+            backface-visibility: hidden;
+            transition: transform 3s;
+        }
+
+        .cover {
+            background: yellow;
+            z-index: 0;
+            transform-origin: left center;
+            /*右边旋转中心*/
+        }
+
+        .page1 {
+            background: green;
+            left: -300px;
+            z-index: -1;
+            transform: rotateY(180deg);
+            transform-origin: right center;
+            /*左边书页旋转中心*/
+        }
+
+        .page2 {
+            background: red;
+            z-index: -2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="book">
+        <li class="cover">
+        </li>
+        <li class="page1">
+        </li>
+        <li class="page2">
+        </li>
+    </div>
+</body>
+
+</html>
