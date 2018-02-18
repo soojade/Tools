@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hello, world!</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: #ccc
+        }
+
+        .loader {
+            margin: 200px auto;
+            font-size: 10px;
+            width: 1em;
+            height: 1em;
+            text-indent: -9999em;
+            border-radius: 50%;
+            animation: load 1s infinite linear;
+        }
+
+
+        @keyframes load {
+            0%,
+            100% {
+                box-shadow: 0 -3em 0 .2em #fff, 2em -2em 0 0 #fff, 3em 0 0 -.5em #fff,
+                2em 2em 0 -.5em #fff, 0 3em 0 -0.5em #fff, -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 0 #fff;
+            }
+            12.5% {
+                box-shadow: 0 -3em 0 0 #fff, 2em -2em 0 .2em #fff, 3em 0 0 0 #fff, 2em 2em 0 -.5em #fff, 0 3em 0 -.5em #fff,
+                -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
+            }
+            25% {
+                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 0 #fff, 3em 0 0 .2em #fff, 2em 2em 0 0 #fff,
+                0 3em 0 -.5em #fff, -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
+            }
+            37.5% {
+                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 0 #fff, 2em 2em 0 .2em #fff, 0 3em 0 0 #fff,
+                -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
+            }
+            50% {
+                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 0 #fff, 0 3em 0 .2em #fff, -2em 2em 0 0 #fff,
+                -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
+            }
+            62.5% {
+                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff, 0 3em 0 0 #fff,
+                -2em 2em 0 .2em #fff, -3em 0 0 0 #fff, -2em -2em 0 -.5em #fff;
+            }
+            75% {
+                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff,
+                0 3em 0 -.5em #fff, -2em 2em 0 0 #fff, -3em 0 0 .2em #fff, -2em -2em 0 0 #fff;
+            }
+            87.5% {
+                box-shadow: 0 -3em 0 0 #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff, 0 3em 0 -.5em #fff,
+                -2em 2em 0 0 #fff, -3em 0 0 0 #fff, -2em -2em 0 .2em #fff;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="loader">loading</div>
+</body>
+
+</html>
