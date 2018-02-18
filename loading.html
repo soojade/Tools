@@ -13,61 +13,27 @@
             margin: 0;
         }
 
-        body {
-            background: #ccc
-        }
-
         .loader {
             margin: 200px auto;
             font-size: 10px;
             width: 1em;
             height: 1em;
-            text-indent: -9999em;
             border-radius: 50%;
-            animation: load 1s infinite linear;
+            box-shadow: 0 -2em rgba(255, 0, 0, 1), 1.414em -1.414em rgba(255, 0, 0, 0.875), 2em 0 rgba(255, 0, 0, 0.75), 1.414em 1.414em rgba(255, 0, 0, 0.625), 0 2em rgba(255, 0, 0, 0.5), -1.414em 1.414em rgba(255, 0, 0, 0.375), -2em 0 rgba(255, 0, 0, 0.25), -1.414em -1.414em rgba(255, 0, 0, 0.125);
+            animation: load 1s infinite forwards steps(8, end);
         }
 
 
         @keyframes load {
-            0%,
             100% {
-                box-shadow: 0 -3em 0 .2em #fff, 2em -2em 0 0 #fff, 3em 0 0 -.5em #fff,
-                2em 2em 0 -.5em #fff, 0 3em 0 -0.5em #fff, -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 0 #fff;
-            }
-            12.5% {
-                box-shadow: 0 -3em 0 0 #fff, 2em -2em 0 .2em #fff, 3em 0 0 0 #fff, 2em 2em 0 -.5em #fff, 0 3em 0 -.5em #fff,
-                -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
-            }
-            25% {
-                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 0 #fff, 3em 0 0 .2em #fff, 2em 2em 0 0 #fff,
-                0 3em 0 -.5em #fff, -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
-            }
-            37.5% {
-                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 0 #fff, 2em 2em 0 .2em #fff, 0 3em 0 0 #fff,
-                -2em 2em 0 -.5em #fff, -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
-            }
-            50% {
-                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 0 #fff, 0 3em 0 .2em #fff, -2em 2em 0 0 #fff,
-                -3em 0 0 -.5em #fff, -2em -2em 0 -.5em #fff;
-            }
-            62.5% {
-                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff, 0 3em 0 0 #fff,
-                -2em 2em 0 .2em #fff, -3em 0 0 0 #fff, -2em -2em 0 -.5em #fff;
-            }
-            75% {
-                box-shadow: 0 -3em 0 -.5em #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff,
-                0 3em 0 -.5em #fff, -2em 2em 0 0 #fff, -3em 0 0 .2em #fff, -2em -2em 0 0 #fff;
-            }
-            87.5% {
-                box-shadow: 0 -3em 0 0 #fff, 2em -2em 0 -.5em #fff, 3em 0 0 -.5em #fff, 2em 2em 0 -.5em #fff, 0 3em 0 -.5em #fff,
-                -2em 2em 0 0 #fff, -3em 0 0 0 #fff, -2em -2em 0 .2em #fff;
+                transform: rotate(360deg);
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="loader">loading</div>
+    <div class="loader"></div>
 </body>
 
 </html>
