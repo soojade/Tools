@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>本地图片拖放</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        body {
+            background: rgb(54, 61, 59);
+            color: #fff;
+            text-align: center;
+            position: relative;
+        }
+
+        #holder {
+            position: absolute;
+            width: 980px;
+            height: 300px;
+            line-height: 300px;
+            font-size: 35px;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -490px;
+            background: rgba(0, 0, 0, .2);
+        }
+
+        #canvas {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0;
+        }
+
+        #holder.hover {
+            border: 3px solid #f00;
+        }
+
+        #holder.normal {
+            border: 3px dashed #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="canvas"></canvas>
+    <div id="holder" class="normal">将文件拖放到此处</div>
+
+    <script>
+        let holder = document.getElementById('holder');
+        let canvas = document.getElementById('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let context = canvas.getContext('2d');
+        if (window.File && window.FileReader && window.FileList && window.Blob) {
+            console.log("支持h5文件api");
+        } else {
+            console.log('浏览器不支持html5文件api，请使用最新版chrome或Firefox浏览器');
+        }
+        holder.ondragover = function () {
+            this.className = 'hover';
+            return false; // 屏蔽默认拖放操作
+        }
+        holder.ondragend = function () {
+            this.className = 'normal';
+            return false;
+        }
+        holder.ondrop = function (e) {
+            this.className = 'normal';
+            e.preventDefault();
+            let file = e.dataTransfer.files[0]; // 获取拖拽的第一个文件
+            reader = new FileReader();
+            reader.onload = function (e) {
+                img = new Image();
+                img.src = e.target.result;
+                img.onload = function () {
+                    context.clearRect(0, 0, canvas.width, canvas.height); // 清除canvas内容
+                    context.drawImage(this, 0, 0, canvas.width, canvas.height); // 绘制图片文件
+                    delete this; // 删除image对象，释放缓存
+                }
+            };
+            reader.readAsDataURL(file); //读取文件内容
+            return false;
+        }
+    </script>
+</body>
+
+</html>

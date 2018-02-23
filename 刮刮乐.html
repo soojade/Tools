@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>刮刮乐</title>
+    <style>
+        #mask {}
+
+        #lottery {
+            text-align: center
+        }
+
+        .res {
+            margin-top: -46px;
+            color: #f00;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="lottery">
+        <h1>刮一刮</h1>
+        <p id="status">请在刮奖区刮奖</p>
+        <canvas id="mask" width="200" height="60"></canvas>
+        <p class="res">谢谢惠顾</p>
+    </div>
+    <script>
+        let canvas = document.querySelector("#mask");
+        let context = canvas.getContext('2d');
+        context.fillStyle = '#d1d1d1';
+        context.fillRect(0, 0, 240, 65);
+        context.globalCompositeOperation = "destination-out";
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            let touch = e.touches[0]; // 获取触摸的第一个点
+            context.beginPath();
+            context.arc(touch.pageX - canvas.offsetLeft, touch.pageY - canvas.offsetTop, 20, 0, Math.PI * 2);
+            context.closePath();
+            context.fillStyle = "#bdc3c7";
+            context.fill();
+            let img = context.getImageData(0, 0, 200, 60); // 获取画布中所有像素
+            let pixArr = img.data; // 像素的字节数据
+            let len = pixArr.length;
+            let transparent = 0; //记录已经透明像素点数量
+            for (let i = 0; i < len; i += 4) {
+                let alpha = pixArr[i + 3]; // 获取每一个像素的透明度数
+                if (alpha < 10) { // 透明度小于10，即已擦出
+                    transparent++;
+                }
+            }
+            let percentage = transparent / (len / 4);
+            if (percentage > .7) {
+                document.querySelector('#status').innerHTML = "刮奖结束!"
+            }
+        })
+    </script>
+</body>
+
+</html>

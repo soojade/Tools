@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Hello, world!</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body style="background:black">
+    <canvas id="mycanvas" width="1000" height="600">您的浏览器不支持canvas，请安装最新浏览器！</canvas>
+
+    <script>
+        const canvas = document.querySelector('#mycanvas');
+        const context = canvas.getContext('2d');
+        let particles = []; // 存储粒子的数组
+        for (let i = 0; i < 500; i++) {
+            particles.push({
+                x: Math.random() * window.innerWidth,  /*水平初始位置*/
+                y: Math.random() * window.innerHeight, /*垂直初始位置*/
+                vx: (Math.random() * 1 - .5), /*水平方向上的速度*/
+                vy: (Math.random() * 1 + 0.5), /*垂直方向上的速度*/
+                size: 1 + Math.random() * 3, /*大小*/
+                color: `#${(Math.random() * 0x1000000 << 0).toString(16)}` /*随机生成颜色*/
+            });
+        }
+        function timeUpdate(e) {
+            context.clearRect(0, 0, window.innerWidth, window.innerHeight); //清除画布区域
+            let particle;
+            for (let i = 0; i < 500; i++) {
+                particle = particles[i];
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                if (particle.x < 0) {
+                    particle.x = window.innerWidth; // 移动到窗口左侧时，显示在最右侧
+                }
+                if (particle.x > window.innerWidth) {
+                    particle.x = 0; // 移动到右侧以外，显示在最左侧
+                }
+                if (particle.y >= window.innerHeight) {
+                    particle.y = 0; // 移动到窗口顶部以外，显示在最顶部
+                }
+                context.fillStyle = particle.color;
+                context.beginPath();
+                context.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2); //绘制圆形,参数：圆心x,y坐标，半径，起始弧度(0)，结束弧度(2π)，
+                context.closePath();
+                context.fill();
+            }
+        }
+        setInterval(timeUpdate, 20);
+    </script>
+</body>
+
+</html>
