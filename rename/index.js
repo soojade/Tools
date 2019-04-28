@@ -12,17 +12,18 @@ let sub = process.argv.slice(3);
 if (sub) {
     sub = sub.join(' ');
 }
-rename(dir);
+let reg = /\d+\.|\(Av\d+,P\d+\)/g; // 要修改的正则
 
-function rename(dir) {
+rename(dir, reg);
+
+function rename(dir, reg) {
     let state = fs.statSync(dir);
-
     if (state.isDirectory()) {
 
         let files = fs.readdirSync(dir);
         let newName = '';
         files.forEach(file => {
-            newName = file.replace(sub, '').replace(/\d+\./, '').replace(/\(Av\d+,P\d+\)/, '');
+            newName = file.replace(sub, '').replace(reg, '');
             fs.renameSync(path.join(dir, file), path.join(dir, newName));
         })
     }
