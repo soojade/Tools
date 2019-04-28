@@ -7,21 +7,23 @@ const path = require('path');
 
 // 通过命令行输入目录
 let dir = path.resolve(process.argv[2]);
+// jj下载时不新建文件夹会把文件夹作为前缀
+let sub = process.argv.slice(3);
+if (sub) {
+    sub = sub.join(' ');
+}
+rename(dir);
 
-change(dir);
-
-function change(dir) {
+function rename(dir) {
     let state = fs.statSync(dir);
 
     if (state.isDirectory()) {
+
         let files = fs.readdirSync(dir);
-        files.forEach(fe => {
-            let file = path.join(dir, fe);
-            if (fs.statSync(file).isFile()) {
-                fs.renameSync(file, file.replace(/\d+\./, '').replace(/\(Av\d+,P\d+\)/, ''), (err) => {
-                    if (err) throw err;
-                })
-            }
+        let newName = '';
+        files.forEach(file => {
+            newName = file.replace(sub, '').replace(/\d+\./, '').replace(/\(Av\d+,P\d+\)/, '');
+            fs.renameSync(path.join(dir, file), path.join(dir, newName));
         })
     }
     console.log('+++++++++++++重命名结束+++++++++++++');
