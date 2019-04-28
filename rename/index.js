@@ -12,7 +12,7 @@ let sub = process.argv.slice(3);
 if (sub) {
     sub = sub.join(' ');
 }
-let reg = /\d+\.|\(Av\d+,P\d+\)/g; // 要修改的正则
+let reg = /\d+\.|\(Av\d+,P\d+\)| 00_00_00-00_\d+_\d+/g; // 要修改的正则
 
 rename(dir, reg);
 
